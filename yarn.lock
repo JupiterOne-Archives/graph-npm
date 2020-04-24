@@ -460,10 +460,10 @@
   dependencies:
     ajv "^6.12.0"
 
-"@jupiterone/integration-sdk@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@jupiterone/integration-sdk/-/integration-sdk-0.10.0.tgz#331d8402ed2cbe5b0f3538f6db17934a9ba4be10"
-  integrity sha512-yNTvgD+ZzvcOOGhYIClbhHAx2hyl02BJhpFRfy71mZxlHeQ5Ajgjt9BFUbWMwGd3HkLWQM7s+2nNb21Wb84jyg==
+"@jupiterone/integration-sdk@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@jupiterone/integration-sdk/-/integration-sdk-0.11.0.tgz#eb6ac86b9612bbfb22afd1016d979a04d9de3048"
+  integrity sha512-glQ7IguqS6/52i3hQ0jR0SmlrbbBWyghYWDKzzSjsStrO8kcO0oXL3lsQduDK9kMTM+j4DUWTlzmmWebxsh38A==
   dependencies:
     "@jupiterone/data-model" "^0.2.3"
     "@pollyjs/adapter-node-http" "^4.0.4"
