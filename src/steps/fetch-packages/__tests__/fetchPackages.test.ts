@@ -7,8 +7,8 @@ afterEach(async () => {
   await polly.stop();
 });
 
-test('should fetch teams belonging to an organization', async () => {
-  polly = setupPolly(__dirname, 'teams');
+test('should fetch packages belonging to an organization', async () => {
+  polly = setupPolly(__dirname, 'packages');
 
   const context = createStepContext();
   await fetchPackages.executionHandler(context);
