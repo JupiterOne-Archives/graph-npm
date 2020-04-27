@@ -20,7 +20,6 @@ test('should fetch packages belonging to an organization', async () => {
           query: false,
         },
       },
-      mode: 'replay',
     },
   });
 
