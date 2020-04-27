@@ -6,7 +6,7 @@ export function createStepContext(): ReturnType<
   return createMockStepExecutionContext({
     instanceConfig: {
       accessToken: process.env.ACCESS_TOKEN || 'accessToken',
-      organization: process.env.ORGANIZATION || 'myOrg',
+      organization: process.env.ORGANIZATION || 'jupiterone',
     },
   });
 }
