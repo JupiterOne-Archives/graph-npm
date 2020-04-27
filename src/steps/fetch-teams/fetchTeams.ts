@@ -26,7 +26,7 @@ const convertTeams = (teams: Teams): Entity[] =>
 const fetchTeams: IntegrationStep = {
   id: 'fetch-org-teams',
   name: 'Fetch Organization Teams',
-  types: ['npm_organization_teams'],
+  types: ['npm_team'],
   async executionHandler({
     instance,
     jobState,

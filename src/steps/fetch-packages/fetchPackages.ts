@@ -12,11 +12,11 @@ type Package = {
 };
 
 const convertPackages = (packages: Packages): Entity[] =>
-  Object.keys(packages).map(packageName => {
+  Object.keys(packages).map((packageName) => {
     const access = packages[packageName];
     const npmPackage: Package = {
       name: packageName,
-      access
+      access,
     };
 
     return createIntegrationEntity({
@@ -29,7 +29,7 @@ const convertPackages = (packages: Packages): Entity[] =>
           id: packageName,
           name: packageName,
           displayName: packageName,
-          access
+          access,
         },
       },
     });
@@ -38,7 +38,7 @@ const convertPackages = (packages: Packages): Entity[] =>
 const fetchPackages: IntegrationStep = {
   id: 'fetch-org-packages',
   name: 'Fetch Organization Packages',
-  types: ['npm_organization_packages'],
+  types: ['npm_package'],
   async executionHandler({
     instance,
     jobState,

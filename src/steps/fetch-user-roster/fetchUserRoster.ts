@@ -38,7 +38,7 @@ const convertRoster = (roster: Roster): Entity[] =>
 const fetchUserRoster: IntegrationStep = {
   id: 'fetch-org-users',
   name: 'Fetch Organization Users',
-  types: ['npm_organization_users'],
+  types: ['npm_user'],
   async executionHandler({
     instance,
     jobState,
