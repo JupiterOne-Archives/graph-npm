@@ -1,28 +1,41 @@
-import { Polly, setupPolly, createStepContext } from 'test';
+import { createStepContext } from 'test';
+import { Recording, setupRecording } from '@jupiterone/integration-sdk/testing';
 import fetchPackages from '../fetchPackages';
 
-let polly: Polly;
+let recording: Recording;
 
 afterEach(async () => {
-  await polly.stop();
+  await recording.stop();
 });
 
 test('should fetch packages belonging to an organization', async () => {
-  polly = setupPolly(__dirname, 'packages');
+  recording = setupRecording({
+    name: 'packages',
+    directory: __dirname,
+    redactedRequestHeaders: ['api-key'],
+    options: {
+      recordFailedRequests: false,
+      matchRequestsBy: {
+        url: {
+          query: false,
+        },
+      },
+    },
+  });
 
   const context = createStepContext();
   await fetchPackages.executionHandler(context);
-  expect(context.jobState.collectedEntities).toHaveLength(140);
+  expect(context.jobState.collectedEntities).toHaveLength(55);
   expect(context.jobState.collectedEntities).toEqual(
     expect.arrayContaining([
       expect.objectContaining({
         _class: ['Repository'],
         _type: 'npm_package',
-        _key: 'npm-package:@lifeomic/snyk',
-        name: '@lifeomic/snyk',
-        displayName: '@lifeomic/snyk',
-        id: '@lifeomic/snyk',
-        access: 'read-write'
+        _key: 'npm-package:@jupiterone/data-model',
+        name: '@jupiterone/data-model',
+        displayName: '@jupiterone/data-model',
+        id: '@jupiterone/data-model',
+        access: 'read-write',
       }),
     ]),
   );

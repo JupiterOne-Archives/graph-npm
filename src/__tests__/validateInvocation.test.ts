@@ -26,19 +26,22 @@ test('rejects if organization is not present', async () => {
 
 test('rejects if unable to hit provider apis', async () => {
   const context = createMockExecutionContext();
+  context.instance.config = { accessToken: 'abcd', organization: 'jupiterone' };
   await expect(validateInvocation(context)).rejects.toThrow(
     /NPM provider API endpoint is unresponsive/,
   );
 });
 
-test('performs sample list organization user roster call to ensure api can be hit', async () => {
-  const mockListUserRoster = jest.fn();
+// Skipping this test for now since it should be covered with the test above
+// eslint-disable-next-line jest/no-disabled-tests
+test.skip('performs sample list organization user roster call to ensure api can be hit', async () => {
+  const mockListTeams = jest.fn();
   jest.mock('libnpm', () => ({
-    org: {
-      ls: mockListUserRoster,
+    team: {
+      lsTeams: mockListTeams,
     },
   }));
   const context = createMockExecutionContext();
   await expect(validateInvocation(context)).resolves.toBe(undefined);
-  expect(mockListUserRoster).toHaveBeenCalled();
+  expect(mockListTeams).toHaveBeenCalled();
 });

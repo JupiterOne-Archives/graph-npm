@@ -1,30 +1,43 @@
-import { Polly, setupPolly, createStepContext } from 'test';
+import { createStepContext } from 'test';
+import { Recording, setupRecording } from '@jupiterone/integration-sdk/testing';
 import fetchUserRoster from '../fetchUserRoster';
 
-let polly: Polly;
+let recording: Recording;
 
 afterEach(async () => {
-  await polly.stop();
+  await recording.stop();
 });
 
 test('should fetch user roster belonging to an organization', async () => {
-  polly = setupPolly(__dirname, 'user_roster');
+  recording = setupRecording({
+    name: 'user_roster',
+    directory: __dirname,
+    redactedRequestHeaders: ['api-key'],
+    options: {
+      recordFailedRequests: false,
+      matchRequestsBy: {
+        url: {
+          query: false,
+        },
+      },
+    },
+  });
 
   const context = createStepContext();
   await fetchUserRoster.executionHandler(context);
-  expect(context.jobState.collectedEntities).toHaveLength(81);
+  expect(context.jobState.collectedEntities).toHaveLength(10);
 
   expect(context.jobState.collectedEntities).toEqual(
     expect.arrayContaining([
       expect.objectContaining({
         _class: ['User'],
         _type: 'npm_user',
-        _key: 'npm-user:bbrewer',
-        name: 'bbrewer',
-        displayName: 'bbrewer',
-        id: 'bbrewer',
-        role: 'developer',
-        isAdmin: false,
+        _key: 'npm-user:aiwilliams',
+        name: 'aiwilliams',
+        displayName: 'aiwilliams',
+        id: 'aiwilliams',
+        role: 'owner',
+        isAdmin: true,
       }),
     ]),
   );
