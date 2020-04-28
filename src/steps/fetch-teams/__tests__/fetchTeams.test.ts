@@ -30,7 +30,7 @@ test('should fetch teams belonging to an organization', async () => {
   expect(context.jobState.collectedEntities).toEqual(
     expect.arrayContaining([
       expect.objectContaining({
-        _class: ['UserGroup', 'Team'],
+        _class: ['UserGroup'],
         _type: 'npm_team',
         _key: 'npm-team:jupiterone:developers',
         name: 'jupiterone:developers',
@@ -38,7 +38,7 @@ test('should fetch teams belonging to an organization', async () => {
         id: 'jupiterone:developers',
       }),
       expect.objectContaining({
-        _class: ['UserGroup', 'Team'],
+        _class: ['UserGroup'],
         _type: 'npm_team',
         _key: 'npm-team:jupiterone:readonly-integration-developers',
         name: 'jupiterone:readonly-integration-developers',

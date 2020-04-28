@@ -10,4 +10,4 @@ export type PackageAccess = 'read-only' | 'read-write';
 
 export type Packages = {
   [key: string]: PackageAccess;
-}
+};

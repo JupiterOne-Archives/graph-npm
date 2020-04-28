@@ -1,4 +1,3 @@
-
 import { IntegrationInstance } from '@jupiterone/integration-sdk';
 import getInstanceConfig from './helpers/getInstanceConfig';
 import libnpm from 'libnpm';
