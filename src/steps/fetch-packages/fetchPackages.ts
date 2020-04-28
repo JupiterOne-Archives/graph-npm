@@ -32,7 +32,7 @@ const convertPackages = (packages: Packages): Entity[] =>
           _type: 'npm_package',
           _class: 'CodeModule',
           id: packageName,
-          name: packageName.slice(packageName.indexOf('/')),
+          name: packageName.slice(packageName.indexOf('/') + 1),
           displayName: packageName,
           access,
         },
