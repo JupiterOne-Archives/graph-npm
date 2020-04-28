@@ -14,7 +14,7 @@ const convertTeams = (teams: Teams): Entity[] =>
         assign: {
           _key: `npm-team:${team}`,
           _type: 'npm_team',
-          _class: ['UserGroup', 'Team'],
+          _class: ['UserGroup'],
           id: team,
           name: team,
           displayName: team,

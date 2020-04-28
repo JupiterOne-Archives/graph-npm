@@ -29,13 +29,14 @@ test('should fetch packages belonging to an organization', async () => {
   expect(context.jobState.collectedEntities).toEqual(
     expect.arrayContaining([
       expect.objectContaining({
-        _class: ['Repository'],
+        _class: ['CodeModule'],
         _type: 'npm_package',
         _key: 'npm-package:@jupiterone/data-model',
         name: '@jupiterone/data-model',
         displayName: '@jupiterone/data-model',
         id: '@jupiterone/data-model',
         access: 'read-write',
+        public: true,
       }),
     ]),
   );
