@@ -1,11 +1,14 @@
 {
   "name": "@jupiterone/graph-npm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A graph conversion tool for https://www.npmjs.com/",
   "license": "MPL-2.0",
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "j1-integration collect",
     "lint": "eslint . --cache --fix --ext .ts,.tsx",
