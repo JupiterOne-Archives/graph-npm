@@ -33,7 +33,7 @@ const convertPackages = (packages: Packages): Entity[] =>
           _class: 'CodeModule',
           id: packageName,
           name: packageName.slice(packageName.indexOf('/') + 1),
-          owner: packageName.startsWith('@')
+          scope: packageName.startsWith('@')
             ? packageName.slice(1, packageName.indexOf('/'))
             : undefined,
           displayName: packageName,
