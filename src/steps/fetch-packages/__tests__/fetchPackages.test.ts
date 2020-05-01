@@ -36,6 +36,7 @@ test('should fetch packages belonging to an organization', async () => {
         displayName: '@jupiterone/data-model',
         id: '@jupiterone/data-model',
         access: 'read-write',
+        owner: 'jupiterone',
         public: true,
       }),
     ]),
