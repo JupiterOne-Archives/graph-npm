@@ -8,11 +8,15 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.0.0 - 2020-04-27
+
 ### Added
+
 - Collection of users from organization user roster.
 - Collection of teams from organization.
 - Collection of packages from organization.
 
 ### Changed
+
 - `instanceConfigFields.json` now specifies an `accessToken` config field.
 - `instanceConfigFields.json` now specifies an `organization` config field.
