@@ -35,7 +35,7 @@ const convertRoster = (roster: Roster): Entity[] =>
     });
   });
 
-const fetchUserRoster: IntegrationStep = {
+const step: IntegrationStep = {
   id: 'fetch-org-users',
   name: 'Fetch Organization Users',
   types: ['npm_user'],
@@ -48,4 +48,4 @@ const fetchUserRoster: IntegrationStep = {
   },
 };
 
-export default fetchUserRoster;
+export default step;

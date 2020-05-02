@@ -1,6 +1,6 @@
 import { createStepContext } from 'test';
 import { Recording, setupRecording } from '@jupiterone/integration-sdk/testing';
-import fetchPackages from '../fetchPackages';
+import step from '..';
 
 let recording: Recording;
 
@@ -8,9 +8,9 @@ afterEach(async () => {
   await recording.stop();
 });
 
-test('should fetch packages belonging to an organization', async () => {
+test('should fetch user roster belonging to an organization', async () => {
   recording = setupRecording({
-    name: 'packages',
+    name: 'user_roster',
     directory: __dirname,
     redactedRequestHeaders: ['api-key'],
     options: {
@@ -24,20 +24,20 @@ test('should fetch packages belonging to an organization', async () => {
   });
 
   const context = createStepContext();
-  await fetchPackages.executionHandler(context);
-  expect(context.jobState.collectedEntities).toHaveLength(55);
+  await step.executionHandler(context);
+  expect(context.jobState.collectedEntities).toHaveLength(10);
+
   expect(context.jobState.collectedEntities).toEqual(
     expect.arrayContaining([
       expect.objectContaining({
-        _class: ['CodeModule'],
-        _type: 'npm_package',
-        _key: 'npm-package:@jupiterone/data-model',
-        name: '@jupiterone/data-model',
-        displayName: '@jupiterone/data-model',
-        id: '@jupiterone/data-model',
-        access: 'read-write',
-        scope: 'jupiterone',
-        public: true,
+        _class: ['User'],
+        _type: 'npm_user',
+        _key: 'npm-user:aiwilliams',
+        name: 'aiwilliams',
+        displayName: 'aiwilliams',
+        id: 'aiwilliams',
+        role: 'owner',
+        isAdmin: true,
       }),
     ]),
   );
