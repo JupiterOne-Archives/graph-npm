@@ -32,7 +32,7 @@ test('should fetch packages belonging to an organization', async () => {
         _class: ['CodeModule'],
         _type: 'npm_package',
         _key: 'npm-package:@jupiterone/data-model',
-        name: '@jupiterone/data-model',
+        name: 'data-model',
         displayName: '@jupiterone/data-model',
         id: '@jupiterone/data-model',
         access: 'read-write',
