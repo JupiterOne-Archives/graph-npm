@@ -63,6 +63,7 @@ const fetchPackages: IntegrationStep = {
       if (found) {
         Object.assign(p, {
           ...convertProperties(found),
+          name: found.name.slice(found.name.indexOf('/') + 1),
           public: true,
           publisher: found.publisher.username,
           publisherEmail: found.publisher.email,
