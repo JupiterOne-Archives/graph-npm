@@ -23,7 +23,7 @@ const convertTeams = (teams: Teams): Entity[] =>
     });
   });
 
-const fetchTeams: IntegrationStep = {
+const step: IntegrationStep = {
   id: 'fetch-org-teams',
   name: 'Fetch Organization Teams',
   types: ['npm_team'],
@@ -36,4 +36,4 @@ const fetchTeams: IntegrationStep = {
   },
 };
 
-export default fetchTeams;
+export default step;
