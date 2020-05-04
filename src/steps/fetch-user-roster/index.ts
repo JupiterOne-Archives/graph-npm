@@ -29,7 +29,7 @@ const convertRoster = (roster: Roster): Entity[] =>
           name: username,
           displayName: username,
           role: organizationRole,
-          isAdmin: organizationRole !== 'developer',
+          admin: organizationRole !== 'developer',
         },
       },
     });
