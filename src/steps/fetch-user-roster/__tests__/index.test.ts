@@ -37,7 +37,7 @@ test('should fetch user roster belonging to an organization', async () => {
         displayName: 'aiwilliams',
         id: 'aiwilliams',
         role: 'owner',
-        isAdmin: true,
+        admin: true,
       }),
     ]),
   );
