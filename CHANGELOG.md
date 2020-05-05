@@ -8,11 +8,29 @@ and this project adheres to
 
 ## [Unreleased]
 
-## 1.1.0 - 2020-05-05
+## 1.3.0 - 2020-05-05
 
 ### Added
 
 - `npm_team` `HAS` `npm_user` relationships
+
+## 1.2.3 - 2020-05-02
+
+### Changed
+
+- Use `admin` boolean property instead of `isAdmin` on `npm_user` entities
+
+## 1.2.1 - 2020-05-02
+
+### Changed
+
+- Use unscoped name as package `name` so that mapping to code repo will work
+
+## 1.1.1 - 2020-05-01
+
+### Added
+
+- Added `scope` property to `npm_package` entities
 
 ## 1.0.0 - 2020-04-27
 
