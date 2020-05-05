@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.1.0 - 2020-05-05
+
+### Added
+
+- `npm_team` `HAS` `npm_user` relationships
+
 ## 1.0.0 - 2020-04-27
 
 ### Added
