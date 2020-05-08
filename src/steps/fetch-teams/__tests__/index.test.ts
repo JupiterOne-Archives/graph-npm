@@ -52,7 +52,7 @@ test('should fetch teams belonging to an organization', async () => {
     expect.arrayContaining([
       {
         _key: 'npm-team:jupiterone:developers|has|npm-user:aiwilliams',
-        _type: 'npm-team_has_npm-user',
+        _type: 'npm_team_has_user',
         _class: 'HAS',
         _fromEntityKey: 'npm-team:jupiterone:developers',
         _toEntityKey: 'npm-user:aiwilliams',

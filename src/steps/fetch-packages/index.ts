@@ -46,7 +46,7 @@ const convertPackages = (packages: Packages): Entity[] =>
 const fetchPackages: IntegrationStep = {
   id: 'fetch-org-packages',
   name: 'Fetch Organization Packages',
-  types: ['npm_package'],
+  types: ['npm_package', 'repo_published_npm_package'],
   async executionHandler({
     instance,
     jobState,

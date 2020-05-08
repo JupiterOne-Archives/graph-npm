@@ -29,7 +29,7 @@ const convertTeams = (teams: Teams): Entity[] =>
 const step: IntegrationStep = {
   id: 'fetch-org-teams',
   name: 'Fetch Organization Teams',
-  types: ['npm_team'],
+  types: ['npm_team', 'npm_team_has_user'],
   async executionHandler({
     instance,
     jobState,
@@ -41,9 +41,9 @@ const step: IntegrationStep = {
       const teamUsers = await listTeamUsers(team, instance);
       const teamUserRelationships = teamUsers.map((user) =>
         createIntegrationRelationship({
-          fromType: 'npm-team',
+          fromType: 'npm_team',
           fromKey: `npm-team:${team}`,
-          toType: 'npm-user',
+          toType: 'npm_user',
           toKey: `npm-user:${user}`,
           _class: 'HAS',
         }),
