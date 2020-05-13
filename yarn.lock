@@ -460,10 +460,10 @@
   dependencies:
     ajv "^6.12.0"
 
-"@jupiterone/integration-sdk@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@jupiterone/integration-sdk/-/integration-sdk-0.17.0.tgz#fc88a00367df2ef84c7c95bf881f8fa81cc2fc4b"
-  integrity sha512-R326bc5AFgHrDCUM3+qLKPqEtywmSAHlEEJwxqEjUM1X6IqlEGkJenXURSLXZpJUoA2ErblkNGJSHfK1r6Ei4g==
+"@jupiterone/integration-sdk@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@jupiterone/integration-sdk/-/integration-sdk-1.0.0.tgz#848c08576e337023dd587d85976c0becd2d39bf6"
+  integrity sha512-AJaWGA8z1NvVq4CvFbI9wG0GM7JVCi0fgk99/TRi8qEVAZKJjYcJnzQSyP3z2ouzszfEAmRYFlanHKsbYZhwsA==
   dependencies:
     "@jupiterone/data-model" "^0.3.1"
     "@lifeomic/alpha" "^1.1.3"
