@@ -4,7 +4,7 @@ import {
   createIntegrationRelationship,
   createIntegrationEntity,
   Entity,
-} from '@jupiterone/integration-sdk';
+} from '@jupiterone/integration-sdk-core';
 import listTeams from '../../api/listTeams';
 import listTeamUsers from '../../api/listTeamUsers';
 import { Teams } from '../../types';

@@ -32,3 +32,8 @@ export type Package = {
   publisher: User;
   maintainers: User[];
 };
+
+export interface NpmIntegrationConfig {
+  accessToken: string;
+  organization: string;
+}

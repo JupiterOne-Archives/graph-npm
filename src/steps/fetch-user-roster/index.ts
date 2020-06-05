@@ -1,9 +1,12 @@
 import {
   IntegrationStep,
   IntegrationStepExecutionContext,
-} from '@jupiterone/integration-sdk';
+} from '@jupiterone/integration-sdk-core';
 import listUserRoster from '../../api/listUserRoster';
-import { createIntegrationEntity, Entity } from '@jupiterone/integration-sdk';
+import {
+  createIntegrationEntity,
+  Entity,
+} from '@jupiterone/integration-sdk-core';
 import { Roster, OrganizationRole } from '../../types';
 
 type User = {

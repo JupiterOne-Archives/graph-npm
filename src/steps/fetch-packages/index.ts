@@ -1,15 +1,17 @@
 import {
   IntegrationStep,
-  IntegrationStepExecutionContext,
   convertProperties,
   createIntegrationRelationship,
   RelationshipDirection,
   Relationship,
-} from '@jupiterone/integration-sdk';
-import { createIntegrationEntity, Entity } from '@jupiterone/integration-sdk';
+} from '@jupiterone/integration-sdk-core';
+import {
+  createIntegrationEntity,
+  Entity,
+} from '@jupiterone/integration-sdk-core';
 import listPackages from '../../api/listPackages';
 import searchPackage from '../../api/searchPackage';
-import { Packages, PackageAccess } from '../../types';
+import { Packages, PackageAccess, NpmIntegrationConfig } from '../../types';
 
 type Package = {
   name: string;
@@ -43,14 +45,11 @@ const convertPackages = (packages: Packages): Entity[] =>
     });
   });
 
-const fetchPackages: IntegrationStep = {
+const fetchPackages: IntegrationStep<NpmIntegrationConfig> = {
   id: 'fetch-org-packages',
   name: 'Fetch Organization Packages',
   types: ['npm_package', 'repo_published_npm_package'],
-  async executionHandler({
-    instance,
-    jobState,
-  }: IntegrationStepExecutionContext) {
+  async executionHandler({ instance, jobState }) {
     const packages = await listPackages(instance);
     const packageEntities = convertPackages(packages);
     const packageRepoRelationships: Relationship[] = [];
@@ -58,7 +57,7 @@ const fetchPackages: IntegrationStep = {
     for (const p of packageEntities) {
       // Search for package via public search endpoint by package name.
       // If found, the package is public.
-      const searchResults = await searchPackage(p.displayName);
+      const searchResults = await searchPackage(p.displayName as string);
       const found = searchResults.find((pkg) => pkg.name === p.displayName);
       if (found) {
         Object.assign(p, {
