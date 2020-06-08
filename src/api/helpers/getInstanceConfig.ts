@@ -1,4 +1,4 @@
-import { IntegrationInstance } from '@jupiterone/integration-sdk';
+import { IntegrationInstance } from '@jupiterone/integration-sdk-core';
 
 type InstanceConfig = {
   accessToken?: string;

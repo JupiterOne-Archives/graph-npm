@@ -1,9 +1,13 @@
-import { createMockStepExecutionContext } from '@jupiterone/integration-sdk/testing';
+import {
+  createMockStepExecutionContext,
+  MockIntegrationStepExecutionContext,
+} from '@jupiterone/integration-sdk-testing';
+import { NpmIntegrationConfig } from '../src/types';
 
-export function createStepContext(): ReturnType<
-  typeof createMockStepExecutionContext
+export function createStepContext(): MockIntegrationStepExecutionContext<
+  NpmIntegrationConfig
 > {
-  return createMockStepExecutionContext({
+  return createMockStepExecutionContext<NpmIntegrationConfig>({
     instanceConfig: {
       accessToken: process.env.ACCESS_TOKEN || 'accessToken',
       organization: process.env.ORGANIZATION || 'jupiterone',

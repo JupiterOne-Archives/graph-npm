@@ -1,4 +1,4 @@
-import { IntegrationInstance } from '@jupiterone/integration-sdk';
+import { IntegrationInstance } from '@jupiterone/integration-sdk-core';
 import getInstanceConfig from './helpers/getInstanceConfig';
 import libnpm from 'libnpm';
 import { Roster } from '../types';

@@ -1,7 +1,7 @@
 import {
   IntegrationExecutionContext,
   IntegrationInstance,
-} from '@jupiterone/integration-sdk';
+} from '@jupiterone/integration-sdk-core';
 import getInstanceConfig from './api/helpers/getInstanceConfig';
 import listTeams from './api/listTeams';
 
