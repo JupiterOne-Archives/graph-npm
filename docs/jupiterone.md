@@ -18,7 +18,7 @@ existing alerts.
 ## Requirements
 
 - JupiterOne requires the name of your NPM organization and an access token API 
-interact with the API.
+to interact with the API.
 - You must have permission in JupiterOne to install new integrations.
 
 ## Support
