@@ -1,9 +1,10 @@
 import {
   IntegrationStep,
   convertProperties,
-  createIntegrationRelationship,
   RelationshipDirection,
   Relationship,
+  RelationshipClass,
+  createMappedRelationship,
 } from '@jupiterone/integration-sdk-core';
 import {
   createIntegrationEntity,
@@ -48,7 +49,21 @@ const convertPackages = (packages: Packages): Entity[] =>
 const fetchPackages: IntegrationStep<NpmIntegrationConfig> = {
   id: 'fetch-org-packages',
   name: 'Fetch Organization Packages',
-  types: ['npm_package', 'repo_published_npm_package'],
+  entities: [
+    {
+      resourceName: 'Package',
+      _type: 'npm_package',
+      _class: 'CodeModule',
+    },
+  ],
+  relationships: [
+    {
+      _type: 'repo_published_npm_package',
+      sourceType: 'CodeRepo',
+      _class: RelationshipClass.PUBLISHED,
+      targetType: 'npm_package',
+    },
+  ],
   async executionHandler({ instance, jobState }) {
     const packages = await listPackages(instance);
     const packageEntities = convertPackages(packages);
@@ -72,15 +87,15 @@ const fetchPackages: IntegrationStep<NpmIntegrationConfig> = {
       }
 
       packageRepoRelationships.push(
-        createIntegrationRelationship({
-          _class: 'PUBLISHED',
+        createMappedRelationship({
+          _class: RelationshipClass.PUBLISHED,
           _mapping: {
             relationshipDirection: RelationshipDirection.REVERSE,
             sourceEntityKey: p._key,
             targetFilterKeys: [['_class', 'name', 'owner']],
             targetEntity: {
               _class: 'CodeRepo',
-              name: p.name,
+              name: p.name as string,
               owner: instance.config.organization,
             },
             skipTargetCreation: true,

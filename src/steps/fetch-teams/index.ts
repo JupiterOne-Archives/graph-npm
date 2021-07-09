@@ -1,9 +1,10 @@
 import {
   IntegrationStep,
   IntegrationStepExecutionContext,
-  createIntegrationRelationship,
+  createDirectRelationship,
   createIntegrationEntity,
   Entity,
+  RelationshipClass,
 } from '@jupiterone/integration-sdk-core';
 import listTeams from '../../api/listTeams';
 import listTeamUsers from '../../api/listTeamUsers';
@@ -29,7 +30,21 @@ const convertTeams = (teams: Teams): Entity[] =>
 const step: IntegrationStep = {
   id: 'fetch-org-teams',
   name: 'Fetch Organization Teams',
-  types: ['npm_team', 'npm_team_has_user'],
+  entities: [
+    {
+      resourceName: 'Team',
+      _type: 'npm_team',
+      _class: 'UserGroup',
+    },
+  ],
+  relationships: [
+    {
+      _type: 'npm_team_has_user',
+      sourceType: 'npm_team',
+      _class: RelationshipClass.HAS,
+      targetType: 'npm_user',
+    },
+  ],
   async executionHandler({
     instance,
     jobState,
@@ -40,12 +55,12 @@ const step: IntegrationStep = {
     for (const team of teams) {
       const teamUsers = await listTeamUsers(team, instance);
       const teamUserRelationships = teamUsers.map((user) =>
-        createIntegrationRelationship({
+        createDirectRelationship({
           fromType: 'npm_team',
           fromKey: `npm-team:${team}`,
           toType: 'npm_user',
           toKey: `npm-user:${user}`,
-          _class: 'HAS',
+          _class: RelationshipClass.HAS,
         }),
       );
       await jobState.addRelationships(teamUserRelationships);
