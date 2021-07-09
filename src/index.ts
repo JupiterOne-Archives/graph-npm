@@ -1,6 +1,5 @@
 import { IntegrationInvocationConfig } from '@jupiterone/integration-sdk-core';
 
-import instanceConfigFields from './instanceConfigFields';
 import validateInvocation from './validateInvocation';
 
 import fetchPackages from './steps/fetch-packages';
@@ -9,7 +8,16 @@ import fetchUserRoster from './steps/fetch-user-roster';
 import { NpmIntegrationConfig } from './types';
 
 export const invocationConfig: IntegrationInvocationConfig<NpmIntegrationConfig> = {
-  instanceConfigFields,
+  instanceConfigFields: {
+    accessToken: {
+      type: 'string',
+      mask: true,
+    },
+    organization: {
+      type: 'string',
+      mask: false,
+    },
+  },
   validateInvocation,
   integrationSteps: [fetchPackages, fetchTeams, fetchUserRoster],
 };
