@@ -37,7 +37,7 @@ export async function searchPackage(
       },
       {
         timeout: 60 * 3 * 1000,
-        maxAttempts: 1,
+        maxAttempts: 3,
 
         handleError: async (err, context, options) => {
           if (isHttpError(err)) {
