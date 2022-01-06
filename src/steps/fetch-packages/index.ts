@@ -114,7 +114,7 @@ const fetchPackages: IntegrationStep<NpmIntegrationConfig> = {
     if (searchErrors.length) {
       throw new IntegrationError({
         code: 'NPM_API_ERROR',
-        message: `Completed processing ${packages.length} total packages; ${searchErrors.length} errors occurred (cause is first one)`,
+        message: `Completed processing ${packageEntities.length} total packages; ${searchErrors.length} errors occurred (cause is first one)`,
         cause: searchErrors[0],
         fatal: false,
       });
