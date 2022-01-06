@@ -1,35 +1,28 @@
 import {
-  IntegrationStep,
   convertProperties,
-  RelationshipDirection,
-  Relationship,
-  RelationshipClass,
-  createMappedRelationship,
-} from '@jupiterone/integration-sdk-core';
-import {
   createIntegrationEntity,
+  createMappedRelationship,
   Entity,
+  IntegrationError,
+  IntegrationStep,
+  RelationshipClass,
+  RelationshipDirection,
 } from '@jupiterone/integration-sdk-core';
-import listPackages from '../../api/listPackages';
-import searchPackage from '../../api/searchPackage';
-import { Packages, PackageAccess, NpmIntegrationConfig } from '../../types';
 
-type Package = {
-  name: string;
-  access: PackageAccess;
-};
+import listPackages from '../../api/listPackages';
+import { searchPackage } from '../../api/searchPackage';
+import { NpmIntegrationConfig, Packages } from '../../types';
 
 const convertPackages = (packages: Packages): Entity[] =>
   Object.keys(packages).map((packageName) => {
     const access = packages[packageName];
-    const npmPackage: Package = {
-      name: packageName,
-      access,
-    };
 
     return createIntegrationEntity({
       entityData: {
-        source: npmPackage,
+        source: {
+          name: packageName,
+          access,
+        },
         assign: {
           _key: `npm-package:${packageName}`,
           _type: 'npm_package',
@@ -64,16 +57,25 @@ const fetchPackages: IntegrationStep<NpmIntegrationConfig> = {
       targetType: 'npm_package',
     },
   ],
-  async executionHandler({ instance, jobState }) {
+  async executionHandler({ instance, jobState, logger }) {
     const packages = await listPackages(instance);
     const packageEntities = convertPackages(packages);
-    const packageRepoRelationships: Relationship[] = [];
 
+    const searchErrors: Error[] = [];
     for (const p of packageEntities) {
-      // Search for package via public search endpoint by package name.
-      // If found, the package is public.
       const searchResults = await searchPackage(p.displayName as string);
-      const found = searchResults.find((pkg) => pkg.name === p.displayName);
+      if (searchResults.err) {
+        logger.error(
+          { package: p, err: searchResults.err },
+          'Error fetching package details',
+        );
+        searchErrors.push(searchResults.err);
+      }
+
+      const found = searchResults.packages?.find(
+        (pkg) => pkg.name === p.displayName,
+      );
+
       if (found) {
         Object.assign(p, {
           ...convertProperties(found),
@@ -86,7 +88,8 @@ const fetchPackages: IntegrationStep<NpmIntegrationConfig> = {
         });
       }
 
-      packageRepoRelationships.push(
+      await jobState.addEntity(p);
+      await jobState.addRelationship(
         createMappedRelationship({
           _class: RelationshipClass.PUBLISHED,
           _mapping: {
@@ -108,8 +111,14 @@ const fetchPackages: IntegrationStep<NpmIntegrationConfig> = {
       );
     }
 
-    await jobState.addEntities(packageEntities);
-    await jobState.addRelationships(packageRepoRelationships);
+    if (searchErrors.length) {
+      throw new IntegrationError({
+        code: 'NPM_API_ERROR',
+        message: `Completed processing ${packages.length} total packages; ${searchErrors.length} errors occurred (cause is first one)`,
+        cause: searchErrors[0],
+        fatal: false,
+      });
+    }
   },
 };
 

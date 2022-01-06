@@ -26,6 +26,7 @@
     "prepack": "yarn build"
   },
   "dependencies": {
+    "@lifeomic/attempt": "^3.0.1",
     "libnpm": "^3.0.1"
   },
   "devDependencies": {

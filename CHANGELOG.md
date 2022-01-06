@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Added `429` response handling in NPM registry API calls to fetch package
+  metadata details
+
 ## 2.2.0 - 2021-07-09
 
 ### Changed
