@@ -2,6 +2,10 @@
   "name": "@jupiterone/graph-npm",
   "version": "2.3.1",
   "description": "A graph conversion tool for https://www.npmjs.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JupiterOne/graph-npm"
+  },
   "license": "MPL-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
