@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 2.4.1 - 2024-02-01
+
+### Changed
+
+- Upgraded integration
+
 ## 2.3.1 - 2022-01-06
 
 ### Fixed
