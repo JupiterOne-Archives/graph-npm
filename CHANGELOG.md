@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 2.4.3 - 2024-02-01
+
+### Changed
+
+- Add missing package
+
 ## 2.4.2 - 2024-02-01
 
 ### Changed
