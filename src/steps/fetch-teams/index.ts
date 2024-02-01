@@ -30,11 +30,12 @@ const convertTeams = (teams: Teams): Entity[] =>
 const step: IntegrationStep = {
   id: 'fetch-org-teams',
   name: 'Fetch Organization Teams',
+  dependsOn: ['fetch-org-users'],
   entities: [
     {
       resourceName: 'Team',
       _type: 'npm_team',
-      _class: 'UserGroup',
+      _class: ['UserGroup'],
     },
   ],
   relationships: [
