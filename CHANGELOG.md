@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 2.4.2 - 2024-02-01
+
+### Changed
+
+- Format code
+
 ## 2.4.1 - 2024-02-01
 
 ### Changed
