@@ -26,7 +26,7 @@ const convertPackages = (packages: Packages): Entity[] =>
         assign: {
           _key: `npm-package:${packageName}`,
           _type: 'npm_package',
-          _class: 'CodeModule',
+          _class: ['CodeModule'],
           id: packageName,
           name: packageName.slice(packageName.indexOf('/') + 1),
           scope: packageName.startsWith('@')
@@ -46,7 +46,7 @@ const fetchPackages: IntegrationStep<NpmIntegrationConfig> = {
     {
       resourceName: 'Package',
       _type: 'npm_package',
-      _class: 'CodeModule',
+      _class: ['CodeModule'],
     },
   ],
   relationships: [
@@ -97,7 +97,7 @@ const fetchPackages: IntegrationStep<NpmIntegrationConfig> = {
             sourceEntityKey: p._key,
             targetFilterKeys: [['_class', 'name', 'owner']],
             targetEntity: {
-              _class: 'CodeRepo',
+              _class: ['CodeRepo'],
               name: p.name as string,
               owner: instance.config.organization,
             },

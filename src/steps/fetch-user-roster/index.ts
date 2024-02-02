@@ -45,7 +45,7 @@ const step: IntegrationStep = {
     {
       resourceName: 'User',
       _type: 'npm_user',
-      _class: 'User',
+      _class: ['User'],
     },
   ],
   relationships: [],
