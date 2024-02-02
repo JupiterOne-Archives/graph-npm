@@ -8,11 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
-## 2.4.3 - 2024-02-01
+## 2.4.4 - 2024-02-02
 
 ### Changed
 
-- Add missing package
+- Fix build
 
 ## 2.4.2 - 2024-02-01
 

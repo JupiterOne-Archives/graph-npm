@@ -1,6 +1,6 @@
 {
   "name": "@jupiterone/graph-npm",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "description": "A graph conversion tool for https://www.npmjs.com/",
   "repository": {
     "type": "git",
